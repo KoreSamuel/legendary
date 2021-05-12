@@ -8,7 +8,6 @@ export interface IHelloMessage {
   message: string;
 }
 
-
 export class YuqueAPI {
   private token: string;
 
@@ -19,25 +18,27 @@ export class YuqueAPI {
     this.headers = {
       'Content-Type': 'application/json',
       'User-Agent': 'yuque-kore',
-      'X-Auth-Token': this.token
+      'X-Auth-Token': this.token,
     };
   }
 
   public async hello(): Promise<YuquePayload<IHelloMessage>> {
     const { data } = await this.getResult<IHelloMessage>('/hello');
     return {
-      data
-    }
+      data,
+    };
   }
 
-  private async getResult<T>(path: string, options: RequestInit = {}): Promise<YuquePayload<T>> {
+  private async getResult<T>(
+    path: string,
+    options: RequestInit = {},
+  ): Promise<YuquePayload<T>> {
     const response = await fetch(`${API_ROOT}${path}`, {
       method: 'GET',
       headers: this.headers,
-      ...options
+      ...options,
     });
 
     return response.json();
   }
-
 }
