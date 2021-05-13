@@ -2,18 +2,25 @@ import React, { FC } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
-import { YuqueAPI, IHelloMessage } from '../utils/yuque-api';
+import { YuqueAPI } from '../utils/yuque-api';
+import { IDoc, IRepo } from '../types/index';
 
 interface HomePageProps {
-  hello: IHelloMessage;
+  repo: IRepo;
+  docs: IDoc[];
 }
-const HomePage: FC<HomePageProps> = ({ hello }: HomePageProps) => (
+const HomePage: FC<HomePageProps> = ({ repo, docs }: HomePageProps) => (
   <>
     <Head>
-      <title>home page</title>
+      <title>{repo.name}</title>
     </Head>
     <div>
-      <h2>{hello.message}</h2>
+      <h2>blog list</h2>
+      <ul id='posts'>
+        {docs.map((doc) => (
+          <li key={doc.slug}>{doc.title}</li>
+        ))}
+      </ul>
     </div>
   </>
 );
@@ -25,12 +32,14 @@ export const getServerSideProps: GetServerSideProps = async (): Promise<{
 }> => {
   const api = new YuqueAPI(process.env.yuqueToken || '');
 
-  const { data: hello } = await api.hello();
-  console.log(hello);
-
+  const { data: currentUser } = await api.getUser();
+  const { data: repos } = await api.getRepos(currentUser.login);
+  const [noteRepo] = repos.filter((repo) => repo.slug === 'note');
+  const { data: docs } = await api.getDocs(noteRepo.namespace);
   return {
     props: {
-      hello,
+      repo: noteRepo,
+      docs: docs.filter((doc) => doc.status === 1),
     },
   };
 };

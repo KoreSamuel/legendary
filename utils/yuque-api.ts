@@ -1,12 +1,11 @@
 const API_ROOT = 'https://www.yuque.com/api/v2';
-
-export interface YuquePayload<T> {
-  data: T;
-}
-
-export interface IHelloMessage {
-  message: string;
-}
+import {
+  IDoc,
+  IHelloMessage,
+  IRepo,
+  IUser,
+  YuquePayload,
+} from '../types/index';
 
 export class YuqueAPI {
   private token: string;
@@ -24,6 +23,29 @@ export class YuqueAPI {
 
   public async hello(): Promise<YuquePayload<IHelloMessage>> {
     const { data } = await this.getResult<IHelloMessage>('/hello');
+    return {
+      data,
+    };
+  }
+
+  public async getUser(login?: string): Promise<YuquePayload<IUser>> {
+    const { data } = await this.getResult<IUser>(
+      `/user${login ? `s/${login}` : ''}`,
+    );
+    return {
+      data,
+    };
+  }
+
+  public async getRepos(login: string): Promise<YuquePayload<IRepo[]>> {
+    const { data } = await this.getResult<IRepo[]>(`/users/${login}/repos`);
+    return {
+      data,
+    };
+  }
+
+  public async getDocs(namespace: string): Promise<YuquePayload<IDoc[]>> {
+    const { data } = await this.getResult<IDoc[]>(`/repos/${namespace}/docs`);
     return {
       data,
     };
