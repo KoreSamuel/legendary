@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-
+import Link from 'next/link';
 import { YuqueAPI } from '../utils/yuque-api';
 import { IDoc, IRepo } from '../types/index';
 
@@ -18,7 +18,11 @@ const HomePage: FC<HomePageProps> = ({ repo, docs }: HomePageProps) => (
       <h2>blog list</h2>
       <ul id='posts'>
         {docs.map((doc) => (
-          <li key={doc.slug}>{doc.title}</li>
+          <li key={doc.slug}>
+            <Link href={`/posts/${doc.slug}`}>
+              <a>{doc.title}</a>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

@@ -51,6 +51,18 @@ export class YuqueAPI {
     };
   }
 
+  public async getDoc(
+    namespace: string,
+    slug: string,
+  ): Promise<YuquePayload<IDoc>> {
+    const { data } = await this.getResult<IDoc>(
+      `/repos/${namespace}/docs/${slug}`,
+    );
+    return {
+      data,
+    };
+  }
+
   private async getResult<T>(
     path: string,
     options: RequestInit = {},
