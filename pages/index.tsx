@@ -20,7 +20,7 @@ const HomePage: FC<HomePageProps> = ({ repo, docs }: HomePageProps) => (
         {docs.map((doc) => (
           <li key={doc.slug}>
             <Link href={`/posts/${doc.slug}`}>
-              <a>{doc.title}</a>
+              <a className='hover:underline'>{doc.title}</a>
             </Link>
           </li>
         ))}

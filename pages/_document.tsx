@@ -1,18 +1,20 @@
-import React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document';
 
 export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initailProps = await Document.getInitialProps(ctx);
+    return { ...initailProps };
+  }
   render() {
     return (
       <Html>
-        <Head>
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
-          <meta charSet='utf-8' />
-          <link
-            rel='stylesheet'
-            href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css'
-          />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

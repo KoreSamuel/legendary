@@ -10,7 +10,10 @@
   "rules": {
     "no-console": 0,
     "prettier/prettier": 2,
-    "@typescript-eslint/explicit-module-boundary-types": 0 //! TODO: update it
+    "@typescript-eslint/explicit-module-boundary-types": 0, //! TODO: update it
+    "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/no-var-requires": 0
   },
   "env": {
     "browser": true,
