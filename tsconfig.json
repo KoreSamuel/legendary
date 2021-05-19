@@ -12,7 +12,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@utils": ["utils/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],
   "exclude": ["node_modules"],
@@ -25,8 +30,6 @@
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "import/prefer-default-export": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    "no-underscore-dangle": "off",
-    "@typescript-eslint/ban-ts-ignore": "warn"
+    "no-underscore-dangle": "off"
   }
 }
