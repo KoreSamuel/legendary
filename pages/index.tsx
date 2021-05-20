@@ -35,7 +35,6 @@ export const getServerSideProps: GetServerSideProps = async (): Promise<{
   props: HomePageProps;
 }> => {
   const api = new YuqueAPI(process.env.yuqueToken || '');
-
   const { data: currentUser } = await api.getUser();
   const { data: repos } = await api.getRepos(currentUser.login);
   const [noteRepo] = repos.filter((repo) => repo.slug === 'note');

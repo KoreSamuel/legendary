@@ -1,30 +1,32 @@
+import SocialIcon from './SocialIcon';
+import Link from './Link';
+import siteMetadata from '@/data/site.config.json';
+
 export default function Footer() {
   return (
-    <footer className='bg-blue-600'>
-      <ul className='flex items-center justify-between lg:container px-4 py-6 mx-auto text-sm text-white md:px-6'>
-        <li>
-          Created by{' '}
-          <a
-            href='https://github.com/KoreSamuel'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='font-bold'
-          >
-            Kore
-          </a>
-        </li>
-
-        <li>
-          <a
-            href='https://github.com/KoreSamuel'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='font-bold'
-          >
-            GitHub
-          </a>
-        </li>
-      </ul>
+    <footer>
+      <div className='flex flex-col items-center mt-16'>
+        <div className='flex mb-3 space-x-4'>
+          <SocialIcon kind='mail' href={`mailto:${siteMetadata.email}`} />
+          <SocialIcon kind='github' href={siteMetadata.github} />
+          <SocialIcon kind='facebook' href={siteMetadata.facebook} />
+          <SocialIcon kind='youtube' href={siteMetadata.youtube} />
+          <SocialIcon kind='linkedin' href={siteMetadata.linkedin} />
+          <SocialIcon kind='twitter' href={siteMetadata.twitter} />
+        </div>
+        <div className='flex mb-2 space-x-2 text-sm text-gray-500 dark:text-gray-400'>
+          <div>{siteMetadata.author}</div>
+          <div>{` • `}</div>
+          <div>{`© ${new Date().getFullYear()}`}</div>
+          <div>{` • `}</div>
+          <Link href='/'>{siteMetadata.title}</Link>
+        </div>
+        <div className='mb-8 text-sm text-gray-500 dark:text-gray-400'>
+          <Link href='https://github.com/KoreSamuel/legendary'>
+            Tailwind Nextjs Theme
+          </Link>
+        </div>
+      </div>
     </footer>
   );
 }

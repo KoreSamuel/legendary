@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface YuquePayload<T> {
   data: T;
 }
@@ -55,4 +56,20 @@ export interface IDoc {
   deleted_at: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface ISiteMetadata {
+  author: string;
+  title: string;
+  github: string;
+  email: string;
+  facebook: string;
+  twitter: string;
+  linkedin: string;
+  youtube: string;
+}
+
+declare module '*.svg' {
+  const content: any;
+  export default content;
 }
