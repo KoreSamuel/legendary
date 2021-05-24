@@ -57,6 +57,11 @@ export class YuqueAPI {
   ): Promise<YuquePayload<IDoc>> {
     const { data } = await this.getResult<IDoc>(
       `/repos/${namespace}/docs/${slug}`,
+      {
+        data: {
+          raw: 1,
+        },
+      },
     );
     return {
       data,
@@ -65,7 +70,7 @@ export class YuqueAPI {
 
   private async getResult<T>(
     path: string,
-    options: RequestInit = {},
+    options: any = {},
   ): Promise<YuquePayload<T>> {
     const response = await fetch(`${API_ROOT}${path}`, {
       method: 'GET',

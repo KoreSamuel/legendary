@@ -11,7 +11,7 @@ export default function Header() {
           <Image src='/logo.svg' width={40} height={40} priority alt='Kore' />
 
           <Link href='/'>
-            <a className='text-lg md:text-xl font-bold ml-3 text-white font-sans'>
+            <a className='text-lg md:text-xl font-bold ml-3 font-sans'>
               KoreSamuel
             </a>
           </Link>

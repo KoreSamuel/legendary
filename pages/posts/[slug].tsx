@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
+import sanitizeHtml from 'sanitize-html';
+
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-
+import PostLayout from '@/layouts/PostLayout';
 import { YuqueAPI } from '../../utils/yuque-api';
 import { IDoc } from '../../types/index';
 import { ParsedUrlQuery } from 'querystring';
@@ -13,25 +15,10 @@ interface IPostPageProps {
   doc: IDoc;
 }
 
-interface IPostHeaderProps {
-  title: string;
-  date?: string;
-}
-
 interface Params extends ParsedUrlQuery {
   namespace: string;
   slug: string;
 }
-
-const PostHeader: FC<IPostHeaderProps> = ({
-  title,
-  date,
-}: IPostHeaderProps) => (
-  <>
-    <h1>{title}</h1>
-    <time>{date}</time>
-  </>
-);
 
 const PostPage: FC<IPostPageProps> = ({ doc }: IPostPageProps) => {
   const router = useRouter();
@@ -40,7 +27,16 @@ const PostPage: FC<IPostPageProps> = ({ doc }: IPostPageProps) => {
     return <div>Loading</div>;
   }
 
-  const __html = doc.body_html.replace(CDN_ROOT, '/api/img');
+  let __html = doc.body_html.replace(CDN_ROOT, '/api/img');
+
+  __html = sanitizeHtml(__html, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['h1', 'h2', 'img']),
+    allowedAttributes: Object.assign(sanitizeHtml.defaults.allowedAttributes, {
+      div: (sanitizeHtml.defaults.allowedAttributes.div || []).concat([
+        'data-language',
+      ]),
+    }),
+  });
 
   return (
     <>
@@ -48,8 +44,9 @@ const PostPage: FC<IPostPageProps> = ({ doc }: IPostPageProps) => {
         <title>{`${doc.title} - ${doc.book.name}`}</title>
       </Head>
       <>
-        <PostHeader title={doc.title} date={doc.created_at} />
-        {<div dangerouslySetInnerHTML={{ __html }} />}
+        <PostLayout post={doc}>
+          {<div dangerouslySetInnerHTML={{ __html }} />}
+        </PostLayout>
       </>
     </>
   );
