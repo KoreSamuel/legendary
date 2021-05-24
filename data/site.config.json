@@ -1,0 +1,17 @@
+{
+  "title": "KoreSamule",
+  "author": "KoreSamule",
+  "headerTitle": "KoreSamule",
+  "description": "A blog created with Next.js and Tailwind.css",
+  "language": "en-us",
+  "siteUrl": "https://kore-legendary.vercel.app",
+  "siteRepo": "https://github.com/KoreSamuel/legendary",
+  "image": "/static/images/avatar.jpg",
+  "email": "test@xxx.com",
+  "github": "https://github.com",
+  "twitter": "https://twitter.com",
+  "facebook": "https://facebook.com",
+  "youtube": "https://youtube.com",
+  "linkedin": "https://www.linkedin.com",
+  "locale": "en-US"
+}

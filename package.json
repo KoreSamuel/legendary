@@ -10,21 +10,29 @@
     "format": "prettier --write \"./**/*{.ts,.tsx}\""
   },
   "dependencies": {
+    "@tailwindcss/jit": "^0.1.18",
     "classnames": "^2.3.1",
     "dotenv": "^9.0.2",
+    "gray-matter": "^4.0.3",
     "next": "10.2.0",
+    "next-themes": "0.0.14",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "sanitize-html": "^2.4.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
+    "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/typography": "^0.4.0",
     "@types/react": "^17.0.6",
+    "@types/sanitize-html": "^2.3.1",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
     "autoprefixer": "^10.2.5",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "file-loader": "^6.2.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "postcss": "^8.2.15",

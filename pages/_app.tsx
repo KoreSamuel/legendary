@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import { AppProps } from 'next/app';
-import Layout from '../components/Layout';
+import { ThemeProvider } from 'next-themes';
+import LayoutWrapper from '../components/LayoutWrapper';
 
 import '../styles/globals.css';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => (
-  <Layout>
-    <Component {...pageProps} />
-  </Layout>
+  <ThemeProvider attribute='class'>
+    <LayoutWrapper>
+      <Component {...pageProps} />
+    </LayoutWrapper>
+  </ThemeProvider>
 );
 
 export default MyApp;
