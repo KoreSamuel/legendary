@@ -33,7 +33,13 @@ const HomePage: FC<HomePageProps> = ({ repo, posts }: HomePageProps) => (
       <ul className='divide-y divide-gray-200 dark:divide-gray-700'>
         {!posts.length && 'No posts found.'}
         {posts.slice(0, MAX_DISPLAY).map((post) => {
-          const { slug, created_at, title } = post;
+          const {
+            slug,
+            created_at,
+            title,
+            custom_description = '',
+            description = '',
+          } = post;
           return (
             <li key={slug} className='py-12'>
               <article>
@@ -62,7 +68,7 @@ const HomePage: FC<HomePageProps> = ({ repo, posts }: HomePageProps) => (
                         </h2>
                       </div>
                       <div className='prose text-gray-500 max-w-none dark:text-gray-400'>
-                        {'summary'}
+                        {custom_description || description}
                       </div>
                     </div>
                     <div className='text-base font-medium leading-6'>

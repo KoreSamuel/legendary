@@ -57,7 +57,13 @@ export default function PostListLayout({ posts, title }: Props) {
         <ul>
           {!filteredPosts.length && 'No posts found.'}
           {filteredPosts.map((post) => {
-            const { slug, created_at, title } = post;
+            const {
+              slug,
+              created_at,
+              title,
+              custom_description = '',
+              description = '',
+            } = post;
             return (
               <li key={slug} className='py-4'>
                 <article className='space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline'>
@@ -85,7 +91,7 @@ export default function PostListLayout({ posts, title }: Props) {
                       <div className='flex flex-wrap'></div>
                     </div>
                     <div className='prose text-gray-500 max-w-none dark:text-gray-400'>
-                      {'summary'}
+                      {custom_description || description}
                     </div>
                   </div>
                 </article>
