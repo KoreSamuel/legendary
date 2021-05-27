@@ -53,6 +53,8 @@ export interface IDoc {
   likes_count: number;
   comments_count: number;
   content_updated_at: string;
+  custom_description: string;
+  description: string;
   deleted_at: string;
   created_at: string;
   updated_at: string;
