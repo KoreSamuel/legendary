@@ -17,6 +17,6 @@ export default async (req: IReq, res: NextApiResponse) => {
   const buffer = await response.arrayBuffer();
 
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'image/png');
+  res.setHeader('Content-Type', 'image/svg+xml');
   res.end(buffer);
 };
