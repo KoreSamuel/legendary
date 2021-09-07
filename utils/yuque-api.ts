@@ -1,4 +1,3 @@
-const API_ROOT = 'https://www.yuque.com/api/v2';
 import {
   IDoc,
   IHelloMessage,
@@ -7,6 +6,7 @@ import {
   YuquePayload,
 } from '../types/index';
 
+const API_ROOT = 'https://www.yuque.com/api/v2';
 export class YuqueAPI {
   private token: string;
 

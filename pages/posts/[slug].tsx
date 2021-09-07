@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import sanitizeHtml from 'sanitize-html';
 
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
@@ -9,7 +8,7 @@ import { YuqueAPI } from '../../utils/yuque-api';
 import { IDoc } from '../../types/index';
 import { ParsedUrlQuery } from 'querystring';
 
-const CDN_ROOT = 'https://cdn.nlark.com';
+const CDN_ROOT = /https:\/\/cdn.nlark.com/g;
 
 interface IPostPageProps {
   doc: IDoc;
@@ -27,16 +26,7 @@ const PostPage: FC<IPostPageProps> = ({ doc }: IPostPageProps) => {
     return <div>Loading</div>;
   }
 
-  let __html = doc.body_html.replace(CDN_ROOT, '/api/img');
-
-  __html = sanitizeHtml(__html, {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['h1', 'h2', 'img']),
-    allowedAttributes: Object.assign(sanitizeHtml.defaults.allowedAttributes, {
-      div: (sanitizeHtml.defaults.allowedAttributes.div || []).concat([
-        'data-language',
-      ]),
-    }),
-  });
+  const __html = doc.body_html.replace(CDN_ROOT, '/api/img');
 
   return (
     <>
