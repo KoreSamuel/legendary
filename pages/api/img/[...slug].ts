@@ -14,7 +14,8 @@ export default async (req: IReq, res: NextApiResponse) => {
   } = req;
 
   const response = await fetch(`${CDN_ROOT}/${slug.join('/')}`);
-  const buffer = await response.arrayBuffer();
+  const arrayBuffer = await response.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
 
   res.statusCode = 200;
   res.setHeader('Content-Type', 'image/svg+xml');
