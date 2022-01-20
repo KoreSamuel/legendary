@@ -1,0 +1,4 @@
+{
+  "origins": ["https://dearxiaojie.top", "https://legendary-koresamuel.vercel.app", "https://legendary-git-main-koresamuel.vercel.app", "https://kore-legendary.vercel.app"],
+  "originsRegex": ["http://localhost:[0-9]+"]
+}

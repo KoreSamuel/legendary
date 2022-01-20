@@ -1,6 +1,7 @@
 import Link from '@/components/Link';
 import PageTitle from '@/components/PageTitle';
 import SectionContainer from '@/components/SectionContainer';
+import { Giscus } from '@giscus/react';
 import siteMetadata from '@/data/site.config.json';
 import { ReactChild } from 'react';
 import { IDoc } from 'types';
@@ -96,6 +97,16 @@ export default function PostLayout({
               <div className='pt-10 pb-8 prose dark:prose-dark max-w-none'>
                 {children}
               </div>
+              <Giscus
+                repo='KoreSamuel/legendary'
+                repoId='MDEwOlJlcG9zaXRvcnkzNjY3NDk0NzU='
+                categoryId='DIC_kwDOFdwnI84CAxJ3'
+                mapping='title'
+                reactionsEnabled='1'
+                emitMetadata='0'
+                // TODO: dark and light
+                theme='light'
+              />
             </div>
             <footer>
               <div className='text-sm font-medium leading-5 divide-gray-200 xl:divide-y dark:divide-gray-700 xl:col-start-1 xl:row-start-2'>
