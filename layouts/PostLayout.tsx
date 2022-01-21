@@ -2,6 +2,7 @@ import Link from '@/components/Link';
 import PageTitle from '@/components/PageTitle';
 import SectionContainer from '@/components/SectionContainer';
 import { Giscus } from '@giscus/react';
+import { useTheme } from 'next-themes';
 import siteMetadata from '@/data/site.config.json';
 import { ReactChild } from 'react';
 import { IDoc } from 'types';
@@ -28,6 +29,7 @@ export default function PostLayout({
 }: PostLayoutProps) {
   const { created_at, title } = post;
   const tags: string[] = [];
+  const { resolvedTheme } = useTheme();
 
   return (
     <SectionContainer>
@@ -98,14 +100,15 @@ export default function PostLayout({
                 {children}
               </div>
               <Giscus
+                // add the "key" to make it rerender, and change the theme.
+                key={resolvedTheme}
                 repo='KoreSamuel/legendary'
                 repoId='MDEwOlJlcG9zaXRvcnkzNjY3NDk0NzU='
                 categoryId='DIC_kwDOFdwnI84CAxJ3'
                 mapping='title'
                 reactionsEnabled='1'
                 emitMetadata='0'
-                // TODO: dark and light
-                theme='light'
+                theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
               />
             </div>
             <footer>
