@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url(./lake.css);
+/* @import url(./lake.css); */
 
 html {
   scroll-behavior: smooth;
