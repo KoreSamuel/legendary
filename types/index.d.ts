@@ -75,3 +75,16 @@ declare module '*.svg' {
   const content: any;
   export default content;
 }
+
+export type NoteMetaType = {
+  title: string;
+  htmlTitle: string;
+  created_at: string;
+  slug: string;
+  permalink: string;
+  description?: string;
+  image?: string;
+  tags?: string[];
+  readingMins?: number;
+  noComments?: boolean;
+};
